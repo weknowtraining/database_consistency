@@ -11,7 +11,7 @@ module DatabaseConsistency
       @configuration = Array(filepaths).each_with_object({}) do |filepath, result|
         content =
           if filepath && File.exist?(filepath)
-            data = YAML.load_file(filepath)
+            data = YAML.load_file(filepath, aliases: true)
             data.is_a?(Hash) ? data : {}
           else
             {}
